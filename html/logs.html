@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/logs.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://github.com/necolas/normalize.css/blob/fc091cce1534909334c1911709a39c22d406977b/normalize.css"
+    />
+    <link rel="stylesheet" href="../fontawesome-free-6.2.0-web/css/all.css" />
+  </head>
+  <body>
+    <script>
+      if (localStorage.getItem("username") != 1)
+        window.location.replace("login.html");
+    </script>
+    <div class="wrapper">
+      <div class="navigation">
+        <div class="navi">
+          <div class="device-manager">
+            <i class="fa-solid fa-bars-progress"></i>
+            Device Manager
+          </div>
+          <div class="navi-item">
+            <i class="fa-solid fa-computer-classic"></i>
+  
+            <a href="../html/dashboard.html">Dashboard</a>
+          </div>
+          <div class="navi-item">
+            <i class="fa-regular fa-timer"></i>
+            <b>Logs</b>
+          </div>
+          <div class="navi-item">
+            <i class="fa-regular fa-timer"></i>
+            Settings
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="account">
+          <i class="fa-solid fa-user user-icon"></i>
+          Welcome John
+          <button onclick="logout()" class="account_logout">
+            <a href="../html/login.html">Đăng xuất</a>
+          </button>
+        </div>
+        <div class="container-log">
+          <div class="log-input">
+            <h2 id="ssss">Action Logs</h2>
+            <input type="button" id="all-device" onclick="alldevice()" value="Toàn bộ thiết bị"></input>
+            <div class="input-item">
+              <input
+                type="text"
+                id="log-search-input"
+                placeholder="name"
+                value=""
+                style="
+                margin-top: 20px;
+                border:1px solid red;
+                border-radius:2px;
+                background-color: #f9f4f4;"
+              />
+              <input
+                type="submit"
+                class="log-search-button"
+                value="SEARCH"
+                onclick="search()"
+              />
+            </div>
+          </div>
+          <div class="log-search-result">
+            <table id="myTable">
+              <tr>
+                <th>Device ID</th>
+                <th>Name</th>
+                <th>Action</th>
+                <th>Date</th>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
+
+    <script type="text/javascript" src="../js/logs.js"></script>
+   <script>
+    var $table = document.getElementById("myTable"),
+	  $n = 5,
+	  $rowCount = $table.rows.length,
+	  $firstRow = $table.rows[0].firstElementChild.tagName,
+	  $hasHead = ($firstRow === "TH"),
+	  $tr = [],
+	  $i, $ii, $j = ($hasHead) ? 1 : 0,
+	  $th = ($hasHead ? $table.rows[(0)].outerHTML : "");
+    var $pageCount = Math.ceil($rowCount / $n);
+    if ($pageCount > 1) {
+	  for ($i = $j, $ii = 0; $i < $rowCount; $i++, $ii++)
+		$tr[$ii] = $table.rows[$i].outerHTML;
+	  $table.insertAdjacentHTML("afterend", "<div class='buttons'></div");
+	  sort(1);
+}
+   </script>
+  </body>
+</html>

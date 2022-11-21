@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/login.css" />
+  </head>
+  <body>
+    <script>
+      if (localStorage.getItem("username") == 1)
+        window.location.replace("dashboard.html");
+    </script>
+    <div class="wrapper">
+      <div class="form">
+        <h1 class="form-heading">SOIOT SYSTEM</h1>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-input"
+            value=""
+            id="tendn"
+            name="'dn"
+            placeholder="user name"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            id="mk"
+            value=""
+            name="mk"
+            class="form-input"
+            placeholder="password"
+          />
+        </div>
+        <div id="login-error">
+          Sai tên đăng nhập hoặc mật khẩu. Vui lòng nhập lại
+        </div>
+
+        <div class="form-check">
+          <input
+            class="form-submit"
+            id="btnDangnhap"
+            type="submit"
+            value="LOGIN"
+            onclick="Validate()"
+            name=""
+          />
+          <a href="" class="link-register" style="color: #3f91f2"
+            >or create new account</a
+          >
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../js/login.js"></script>
+  </body>
+</html>

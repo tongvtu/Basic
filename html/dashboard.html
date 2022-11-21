@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://github.com/necolas/normalize.css/blob/fc091cce1534909334c1911709a39c22d406977b/normalize.css"
+    />
+    <link rel="stylesheet" href="../fontawesome-free-6.2.0-web/css/all.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      if (localStorage.getItem("username") != 1)
+        window.location.replace("login.html");
+    </script>
+    <div class="wrapper">
+      <div class="navigation" onclick="navishow()">
+        <div id="menu-button">
+          <i class="fa-solid fa-bars" style="align-self: center"></i>
+        </div>
+        <div id="navi">
+          <div class="device-manager">
+            <i class="fa-solid fa-bars-progress"></i>
+            Device Manager
+          </div>
+          <div class="navi-item">
+            <i class="fa-solid fa-computer-classic"></i>
+
+            <b>Dashboard</b>
+          </div>
+          <div class="navi-item">
+            <i class="fa-regular fa-timer"></i>
+            <a href="./logs.html">Logs</a>
+          </div>
+          <div class="navi-item">
+            <i class="fa-regular fa-timer"></i>
+            Settings
+          </div>
+        </div>
+      </div>
+      <div class="container" id="containers">
+        <div class="account">
+          <i class="fa-solid fa-user user-icon"></i>
+          Welcome John
+          <button onclick="logout()" class="account_logout">
+            <a href="../html/login.html">Đăng xuất</a>
+          </button>
+        </div>
+        <div class="dashboard" id="dashboard" onclick="navihide()">
+          <button
+            onclick="deleteAllDevice();newchart();updatetable()"
+            class="log-search-button"
+            style="margin-top: 2px"
+          >
+            Xoá tất cả các thiết bị
+          </button>
+          <div class="dashboard-table">
+            <table id="device">
+              <tr>
+                <th>Device</th>
+                <th>Mac Address</th>
+                <th>IP</th>
+                <th>Created Date</th>
+                <th>Power Consumption (KW/H)</th>
+              </tr>
+            </table>
+          </div>
+          <div class="dashboard-func">
+            <div class="power-cons">
+              <canvas id="myChart" style="width: 100%; height: 90%"></canvas>
+            </div>
+            <div class="add-device">
+              <form
+                class="device-form"
+                id="device-form"
+                action="#"
+                onsubmit="return false"
+              >
+                <input
+                  type="text"
+                  class="form-input"
+                  id="dname"
+                  name="dname"
+                  placeholder="name"
+                  value=""
+                />
+                <input
+                  type="text"
+                  class="form-input"
+                  id="dIP"
+                  name="dIP"
+                  placeholder="IP"
+                  value=""
+                />
+                <input
+                  type="submit"
+                  value="Submit"
+                  id="device-form-submit"
+                  onclick="deviceadd()"
+                  name=""
+                />
+                <span
+                  id="form-error"
+                  style="color: red; visibility: hidden; margin: 5px"
+                  >Thiếu name hoặc IP. Vui lòng nhập đủ</span
+                >
+                <div
+                  id="consumption"
+                  style="
+                    visibility: hidden;
+                    display: flex;
+                    flex-direction: column;
+                  "
+                >
+                  <h3>Lượng điện tiêu thụ</h3>
+                  <div style="display: flex; margin-top: 5px">
+                    <input
+                      type="number"
+                      id="device-consumption"
+                      value=""
+                      style="
+                        margin-top: 0px;
+                        width: 80%;
+                        height: 40px;
+                        border: none;
+                        background-color: #f9f4f4;
+                        padding-left: 20px;
+                      "
+                      placeholder="Yêu cầu nhập số"
+                    />
+
+                    <input
+                      type="submit"
+                      value="Thêm"
+                      style="
+                        margin-top: 0px;
+                        width: 100px;
+                        height: 40px;
+                        border-radius: 3px;
+                        border: 1px solid #f28e19;
+                        background-color: #f28e19;
+                        color: #fbe0c2;
+                        font-size: 10px;
+                        box-shadow: 0 3px 2px -2px grey;
+                        cursor: pointer;
+                      "
+                      onclick="deviceadd();
+                      
+                      newchart()"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../js/dashboard.js"></script>
+    <script>
+      // var icon = document.getElementById("menu-button");
+      // icon.addEventListener("click", alert("ok"));
+    </script>
+  </body>
+</html>
